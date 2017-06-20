@@ -26,17 +26,17 @@ namespace Infrastructure.EntityFramework.EntityConfiguration
                 .IsMaxLength()
                 .IsOptional();
 
-            //Property(x => x.FirstName)
-            //    .HasColumnName("FirstName")
-            //    .HasColumnType("nvarchar")
-            //    .HasMaxLength(256)
-            //    .IsRequired();
+            Property(x => x.FirstName)
+                .HasColumnName("FirstName")
+                .HasColumnType("nvarchar")
+                .HasMaxLength(256)
+                .IsRequired();
 
-            //Property(x => x.LastName)
-            //    .HasColumnName("LastName")
-            //    .HasColumnType("nvarchar")
-            //    .HasMaxLength(256)
-            //    .IsRequired();
+            Property(x => x.LastName)
+                .HasColumnName("LastName")
+                .HasColumnType("nvarchar")
+                .HasMaxLength(256)
+                .IsRequired();
 
 
             Property(x => x.UserName)
