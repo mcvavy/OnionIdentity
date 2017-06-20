@@ -6,7 +6,7 @@ namespace Core.Entities
     public class Role
     {
         #region Scalar Properties
-        public int RoleId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         #endregion
 

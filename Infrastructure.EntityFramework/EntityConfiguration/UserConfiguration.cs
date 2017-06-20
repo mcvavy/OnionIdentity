@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
@@ -12,12 +14,11 @@ namespace Infrastructure.EntityFramework.EntityConfiguration
     {
         internal UserConfiguration()
         {
+
             ToTable("User");
 
-            HasKey(x => x.UserId)
-                .Property(x => x.UserId)
-                .HasColumnName("UserId")
-                //.HasColumnType("uniqueidentifier")
+            HasKey(x => x.Id)
+                .Property(x => x.Id)
                 .IsRequired();
 
             Property(x => x.SecurityStamp)
@@ -26,23 +27,12 @@ namespace Infrastructure.EntityFramework.EntityConfiguration
                 .IsMaxLength()
                 .IsOptional();
 
-            Property(x => x.FirstName)
-                .HasColumnName("FirstName")
-                .HasColumnType("nvarchar")
-                .HasMaxLength(256)
-                .IsRequired();
-
-            Property(x => x.LastName)
-                .HasColumnName("LastName")
-                .HasColumnType("nvarchar")
-                .HasMaxLength(256)
-                .IsRequired();
-
 
             Property(x => x.UserName)
                 .HasColumnName("UserName")
                 .HasColumnType("nvarchar")
                 .HasMaxLength(256)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("UserNameIndex") { IsUnique = true }))
                 .IsRequired();
 
             HasMany(x => x.Roles)

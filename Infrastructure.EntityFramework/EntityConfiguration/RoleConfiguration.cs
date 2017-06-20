@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
@@ -14,17 +16,17 @@ namespace Infrastructure.EntityFramework.EntityConfiguration
         {
             ToTable("Role");
 
-            HasKey(x => x.RoleId)
-                .Property(x => x.RoleId)
-                .HasColumnName("RoleId")
-//                .HasColumnType("uniqueidentifier")
+            HasKey(x => x.Id)
+                .Property(x => x.Id)
                 .IsRequired();
 
             Property(x => x.Name)
                 .HasColumnName("Name")
                 .HasColumnType("nvarchar")
                 .HasMaxLength(256)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("RoleNameIndex") { IsUnique = true }))
                 .IsRequired();
+
 
             HasMany(x => x.Users)
                 .WithMany(x => x.Roles)
